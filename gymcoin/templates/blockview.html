@@ -1,0 +1,31 @@
+<div class="card" style="width: 18rem;">
+	<div class="card-body">
+	  <h5 class="card-title">Block <small class="text-muted" *ngIf="block.prev == 0">(Genesis block)</small></h5>
+	</div>
+	<ul class="list-group list-group-flush">
+	  <li class="list-group-item">
+
+	  	<span class="">Hash</span>
+	  	<br>
+	  	<div class="text-truncate" [style.color]="'#' + block.hash.substring(0,6)">
+	  		<small>{{ block.hash }}</small>
+	  	</div>
+	  </li>
+
+		<li class="list-group-item">
+		<span class="">Hash of previous block</span>
+	  	<br>
+
+	  	<div class="text-truncate" [style.color]="'#' + block.prev.substring(0,6)">
+	  		<small>{{ block.prev }}</small>
+	  	</div>
+	  </li>
+	  
+	  <li class="list-group-item">
+	  	<span class="">Timestamp</span><br>
+	  	<div class="text-truncate text-muted">
+	  		<small>{{ block.time }}</small>
+	  	</div>
+	  </li>
+	</ul>
+</div>

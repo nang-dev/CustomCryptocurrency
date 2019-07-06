@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Gym Coin - Login</title>
+
+      <!-- Custom fonts for this template--> 
+  <link href="{{ url_for('static', filename = 'vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="{{ url_for('static', filename = 'css/sb-admin.css')}}" rel="stylesheet" type="text/css">
+
+
+
+</head>
+
+<body class="bg-dark">
+
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Login</div>
+      <div class="card-body">
+
+        {% with messages = get_flashed_messages(with_categories = true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class = "alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+        {% endwith %}
+        <form method = "POST", action = "">
+          {{ form.hidden_tag() }}
+
+          <div class="form-group">
+            {% if form.email.errors  %}
+              {{ form.email(class="form-control form-control-lg is-invalid") }}
+
+              <div class = "invalid-feedback">
+                {% for error in form.email.errors %}
+                  <span> {{ error }} </span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.email(class="form-control form-control-lg")}}
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            {% if form.password.errors  %}
+              {{ form.password(class="form-control form-control-lg is-invalid") }}
+
+              <div class = "invalid-feedback">
+                {% for error in form.password.errors %}
+                  <span> {{ error }} </span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.password(class="form-control form-control-lg")}}
+            {% endif %}
+            
+          </div>
+
+          <div class="form-group">
+            <div class="form-check">
+              {{ form.remember(class="form-check-input") }}
+              {{ form.remember.label(class="form-check-label") }}
+            </div>
+          </div>
+          <div class="form-group">
+            {{ form.submit(class="btn btn-primary btn-block") }}
+          </div>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="{{ url_for('register') }}">Don't Have An Account Yet?</a>
+          <a class="d-block small" href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'vendor/jquery/jquery.min.js') }}" ></script>
+
+  <script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
+
+  <!-- Core plugin JavaScript-->
+  <script type = "text/javascript" 
+         src = "{{ url_for('static', filename = 'vendor/jquery-easing/jquery.easing.min.js') }}" ></script>
+
+</body>
+
+</html>

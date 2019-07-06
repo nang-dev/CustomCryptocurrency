@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>My Account</h1>
+
+{% if current_user.is_authenticated %}
+<form>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ current_user.name }}" disabled=True>
+  </div>
+  <div class="form-group">
+    <label>Username</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ current_user.username }}" disabled=True>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ current_user.email }}" disabled=True>
+  </div>
+  <div class="form-group">
+    <label>Key</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ current_user.key }}" disabled=True>
+  </div>
+  <div class="form-group">
+    <label>Balance</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ blockchain.getBalance( current_user.username ) }}" disabled=True>
+  </div>
+</form>
+{% else %}
+	<div class=""> 
+		<a href="{{url_for('login')}}"><button type="button" class="btn btn-info">Sign in to view account!</button></a>
+	</div>
+	{% endif %}
+{% endblock content %}

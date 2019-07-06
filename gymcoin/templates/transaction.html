@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	
+		<h1>Create a Secure Transaction</h1>
+		<p>Transfer some money to someone!</p>
+
+		{% if current_user.is_authenticated %}
+			<form method = "POST", action = "">
+				{{ form.hidden_tag() }}
+		  	<div class="form-group">
+		  		<label for="sender">Sender:</label>
+	        {% if form.sender.errors  %}
+	        	{{ form.sender(class="form-control form-control-lg", type = "hidden", value = current_user.username)}}
+	        	{{ form.dummy(class="form-control form-control-lg is-invalid", value = current_user.username, disabled=True)}}
+	          <div class = "invalid-feedback">
+	            {% for error in form.sender.errors %}
+	              <span> {{ error }} </span>
+	            {% endfor %}
+	          </div>
+	        {% else %}
+	        	{{ form.sender(class="form-control form-control-lg", type = "hidden", value = current_user.username)}}
+	          {{ form.dummy(class="form-control form-control-lg", value = current_user.username, disabled=True)}}
+	        {% endif %}
+	        <small id="fromAddressHelp" class="form-text text-muted">
+			    	This is your username, and funds will come from wallet address. Each transaction is verified by a crypto hash signature!
+			    </small>
+	      </div>
+
+		  	<div class="form-group">
+		  		<label for="reciever">Reciever:</label>
+	        {% if form.reciever.errors  %}
+	          {{ form.reciever(class="form-control form-control-lg is-invalid") }}
+	          <div class = "invalid-feedback">
+	            {% for error in form.reciever.errors %}
+	              <span> {{ error }} </span>
+	            {% endfor %}
+	          </div>
+	        {% else %}
+	          {{ form.reciever(class="form-control form-control-lg")}}
+	        {% endif %}
+	        <small id="fromAddressHelp" class="form-text text-muted">
+			    	Enter in the username of who you want the crytocurrency to go to!
+			    </small>
+	      </div>
+
+		  	<div class="form-group">
+		  		<label for="amount">Amount:</label>
+	        {% if form.amount.errors  %}
+	          {{ form.amount(class="form-control form-control-lg is-invalid") }}
+	          <div class = "invalid-feedback">
+	            {% for error in form.amount.errors %}
+	              <span> {{ error }} </span>
+	            {% endfor %}
+	          </div>
+	        {% else %}
+	          {{ form.amount(class="form-control form-control-lg", type = "number")}}
+	        {% endif %}
+
+	        {{ form.key(class="form-control form-control-lg", type = "hidden", value = current_user.key)}}
+
+	      </div>
+	      <div class="form-group">
+		  		{{ form.submit(class="btn btn-primary btn-block") }}
+		  	</div>
+		  <form>
+		{%else%}
+			<form method = "POST", action = "">
+				{{ formNL.hidden_tag() }}
+		  	<div class="form-group">
+		  		<label for="sender">Sender:</label>
+	        {{ form.dummy(class="form-control form-control-lg", value = current_user.username, disabled=True)}}
+	        <small id="fromAddressHelp" class="form-text text-muted">
+			    	This is your username, and funds will come from wallet address. Each transaction is verified by a crypto hash signature!
+			    </small>
+	      </div>
+
+		  	<div class="form-group">
+		  		<label for="reciever">Reciever:</label>
+	         
+	        {{ formNL.reciever(class="form-control form-control-lg", disabled=True)}}
+	        <small id="fromAddressHelp" class="form-text text-muted">
+			    	Enter in the username of who you want the crytocurrency to go to!
+			    </small>
+	      </div>
+
+		  	<div class="form-group">
+		  		<label for="amount">Amount:</label>
+	        {{ formNL.amount(class="form-control form-control-lg", disabled=True)}}
+	      </div>
+	      <div class="form-group">
+		  		{{ formNL.submit(class="btn btn-info btn-block") }}
+		  	</div>
+	    <form>  
+		{%endif%}
+
+
+
+
+{% endblock content %}

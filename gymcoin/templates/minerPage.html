@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<h1>Mine Blocks for Rewards</h1>
+	<p>Current Mining Reward: 50 GymCoins </p>
+	<h4>Pending Transactions:</h4>
+	<table class="table">
+	  <thead class="thead-dark">
+	    <th scope="col">#</th>
+		      <th scope="col">From</th>
+		      <th scope="col">To</th>
+		      <th scope="col">Amount</th>
+		      <th scope="col">Timestamp</th>
+		      <th scope="col">Valid?</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for tx in blockchain.pendingTransactions %}
+	    <tr>
+	      <th scope="row">{{loop.index0}}</th>
+	      
+	      <td class="text-truncate" style="max-width: 100px;">
+	        <a>{{tx.sender}}</a>
+	      </td>
+	      <td class="text-truncate" style="max-width: 100px;">
+	          <a>{{tx.reciever}}</a>
+	      </td>
+	      <td>
+	        {{tx.amt}}
+	      </td>
+	      <td>
+	        {{tx.time }}<br>
+	      </td>
+	      <td style="max-width: 40px;">
+	      	{% if tx.isValidTransaction() %}
+	        	<span>✓</span>
+	        {%else%}
+	        	<span>✗</span>
+	        {%endif%}
+	      </td>
+	    </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+	{% if current_user.is_authenticated %}
+		<div class=""> 
+			<a href="{{url_for('mine', miner=current_user.username)}}"><button type="button" class="btn btn-primary">Mine A New Block!</button></a>
+		</div>
+	{% else %}
+		<div class=""> 
+			<a href="{{url_for('login')}}"><button type="button" class="btn btn-info">Sign in to mine blocks!</button></a>
+		</div>
+	{% endif %}
+{% endblock content %}
