@@ -133,16 +133,16 @@ class Blockchain (object):
 
 	def generateKeys(self):
 		key = RSA.generate(2048)
-		private_key = key.export_key()
+		private_key = key.exportKey()
 		file_out = open("private.pem", "wb")
 		file_out.write(private_key)
 
-		public_key = key.publickey().export_key()
+		public_key = key.publickey().exportKey()
 		file_out = open("receiver.pem", "wb")
 		file_out.write(public_key)
 		
 		print(public_key.decode('ASCII'));
-		return key.publickey().export_key().decode('ASCII');
+		return key.publickey().exportKey().decode('ASCII');
 
 
 	def chainJSONencode(self):
@@ -296,7 +296,7 @@ class Transaction (object):
 			return False;
 		#print(str(key.publickey().export_key()));
 		#print(self.sender);
-		if(str(key.publickey().export_key()) != str(senderKey.publickey().export_key())):
+		if(str(key.publickey().exportKey()) != str(senderKey.publickey().exportKey())):
 			print("Transaction attempt to be signed from another wallet");
 			return False;
 
