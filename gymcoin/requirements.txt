@@ -1,0 +1,9 @@
+requests==2.26.0
+Flask==2.0.1
+flask_bcrypt==0.7.1
+flask_login==0.5.0
+flask_sqlalchemy==2.5.1
+flask_wtf==0.15.1
+jsonpickle==2.0.0
+pycryptodome==3.10.1
+WTForms==2.3.3
