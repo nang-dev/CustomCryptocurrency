@@ -79,7 +79,7 @@ class Blockchain (object):
 
 
 			if b2.prev != b1.hash:
-				console.log("error 5");
+				print("error 5");
 				return False;
 		return True;
 
