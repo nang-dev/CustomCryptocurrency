@@ -1,0 +1,16 @@
+certifi==2020.12.5
+chardet==4.0.0
+click==8.0.0
+Flask==2.0.0
+idna==2.10
+itsdangerous==2.0.0
+Jinja2==3.0.0
+jsonpickle==2.0.0
+MarkupSafe==2.0.0
+Naked==0.1.31
+pycryptodome==3.10.1
+PyYAML==5.4.1
+requests==2.25.1
+shellescape==3.8.1
+urllib3==1.26.4
+Werkzeug==2.0.0
