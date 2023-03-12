@@ -1,0 +1,9 @@
+flask
+flask_bcrypt
+flask_login
+flask_alchemy 
+emailvalidator 
+uuid 
+jsonpickle 
+requests 
+pycryptodome 
